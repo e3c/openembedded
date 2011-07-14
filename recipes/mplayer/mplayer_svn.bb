@@ -29,6 +29,7 @@ SRC_URI_append_armv7a = " \
        file://vo_omapfb.c \
        file://yuv.S \
        file://0001-omapfb.patch;minrev=30166 \
+       file://vofw.patch \
 	  "
 
 # This is required for the collie machine only as all stacks in that
@@ -47,7 +48,7 @@ RCONFLICTS_${PN} = "mplayer-atty"
 RREPLACES_${PN} = "mplayer-atty"
 
 PV = "0.0+1.0rc3+svnr${SRCPV}"
-PR = "r27"
+PR = "r28"
 DEFAULT_PREFERENCE = "-1"
 DEFAULT_PREFERENCE_angstrom = "1"
 DEFAULT_PREFERENCE_shr = "1"
