@@ -6,13 +6,14 @@ DEPENDS += "virtual/libsdl schroedinger libgsm libvpx"
 SRCREV = "0b32da90f893b3e04ead18a546252e241a6a0988"
 
 PV = "0.6.1+${PR}+gitr${SRCPV}"
-PR = "${INC_PR}.1"
+PR = "${INC_PR}.2"
 
 DEFAULT_PREFERENCE = "-1"
 DEFAULT_PREFERENCE_angstrom = "1"
 DEFAULT_PREFERENCE_shr = "1"
 
-SRC_URI = "git://git.libav.org/libav.git;protocol=git"
+SRC_URI = "git://git.libav.org/libav.git;protocol=git \
+           file://vofw.patch;apply=yes" 
 
 S = "${WORKDIR}/git"
 B = "${S}/build.${HOST_SYS}.${TARGET_SYS}"

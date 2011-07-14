@@ -1,0 +1,14 @@
+diff --git a/libswscale/swscale_internal.h b/libswscale/swscale_internal.h
+index 19dff8f..3899102 100644
+--- a/libswscale/swscale_internal.h
++++ b/libswscale/swscale_internal.h
+@@ -36,7 +36,7 @@
+ #if ARCH_X86
+ #define VOFW 5120
+ #else
+-#define VOFW 2048 // faster on PPC and not tested on others
++#define VOFW 4096 // faster on PPC and not tested on others
+ #endif
+ 
+ #define VOF  (VOFW*2)
+
