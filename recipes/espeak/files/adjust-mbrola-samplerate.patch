@@ -1,0 +1,13 @@
+diff --git a/src/speak_lib.cpp b/src/speak_lib.cpp
+index 7b26beb..0756d0d 100644
+--- a/src/speak_lib.cpp
++++ b/src/speak_lib.cpp
+@@ -376,7 +376,7 @@ static int initialise(int control)
+ 	int result;
+ 
+ 	LoadConfig();
+-	WavegenInit(22050,0);   // 22050
++	WavegenInit(16000,0);   // 22050
+ 	if((result = LoadPhData()) != 1)
+ 	{
+ 		if(result == -1)

@@ -1,0 +1,62 @@
+diff --git a/src/mbrowrap.cpp b/src/mbrowrap.cpp
+index f773ab6..152f266 100755
+--- a/src/mbrowrap.cpp
++++ b/src/mbrowrap.cpp
+@@ -478,12 +478,17 @@ static ssize_t receive_from_mbrola(void *buffer, size_t bufsize)
+ 
+ int init_MBR(const char *voice_path)
+ {
+-	int error, result;
++	int result;
+ 	unsigned char wavhdr[45];
+ 
+-	error = start_mbrola(voice_path);
+-	if (error)
+-		return -1;
++	if (start_mbrola(voice_path)) {
++		/* Try closing it and start it again */
++		close_MBR();
++		if(start_mbrola(voice_path)) {
++			/* Nothing left to do but giving up */
++			return -1;
++		}
++	}
+ 
+ 	result = send_to_mbrola("#\n");
+ 	if (result != 2) {
+diff --git a/src/synth_mbrola.cpp b/src/synth_mbrola.cpp
+index f3d74ae..c25d07d 100644
+--- a/src/synth_mbrola.cpp
++++ b/src/synth_mbrola.cpp
+@@ -115,6 +115,8 @@ espeak_ERROR LoadMbrolaTable(const char *mbrola_voice, const char *phtrans, int
+ {//===================================================================================
+ // Load a phoneme name translation table from espeak-data/mbrola
+ 
++	static char previously_loaded_voice[50] = "";
++
+ 	int size;
+ 	int ix;
+ 	int *pw;
+@@ -157,8 +159,9 @@ espeak_ERROR LoadMbrolaTable(const char *mbrola_voice, const char *phtrans, int
+ 	} 
+ #endif
+ 
+-	if(init_MBR(path) != 0)      // initialise the required mbrola voice
+-		return(EE_NOT_FOUND);
++	if (mbrola_voice && strcmp(previously_loaded_voice, mbrola_voice) != 0)
++		if(init_MBR(path) != 0)      // initialise the required mbrola voice
++			return(EE_NOT_FOUND);
+ 
+ 	setNoError_MBR(1);     // don't stop on phoneme errors
+ 
+@@ -196,6 +199,10 @@ espeak_ERROR LoadMbrolaTable(const char *mbrola_voice, const char *phtrans, int
+ 	strcpy(mbrola_name,mbrola_voice);
+ //	mbrola_delay = 3800;  // improve synchronization of events
+ 	mbrola_delay = 1000;  // improve synchronization of events
++
++	strncpy(previously_loaded_voice, mbrola_voice, 50);
++	previously_loaded_voice[49] = '\0';
++
+ 	return(EE_OK);
+ }  // end of LoadMbrolaTable
+ 
