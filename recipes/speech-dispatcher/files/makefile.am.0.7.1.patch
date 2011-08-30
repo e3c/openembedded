@@ -1,0 +1,65 @@
+diff --git a/src/audio/Makefile.am b/src/audio/Makefile.am
+index 3b596f6..1fe02f7 100644
+--- a/src/audio/Makefile.am
++++ b/src/audio/Makefile.am
+@@ -2,7 +2,7 @@
+ localedir = $(datadir)/locale
+ inc_local = "-I$(top_srcdir)/intl/"
+ 
+-am_cflags = -DLOCALEDIR=\"$(localedir)\" -I/usr/include/ $(inc_local) @glib_include@
++am_cflags = -DLOCALEDIR=\"$(localedir)\" $(inc_local) @glib_include@
+ 
+ if nas_support
+ NAS_FLAGS = -DWITH_NAS
+diff --git a/src/audio/Makefile.in b/src/audio/Makefile.in
+index ba440c2..d5ae291 100644
+--- a/src/audio/Makefile.in
++++ b/src/audio/Makefile.in
+@@ -243,7 +243,7 @@ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ inc_local = "-I$(top_srcdir)/intl/"
+-am_cflags = -DLOCALEDIR=\"$(localedir)\" -I/usr/include/ $(inc_local) @glib_include@
++am_cflags = -DLOCALEDIR=\"$(localedir)\" $(inc_local) @glib_include@
+ @nas_support_TRUE@NAS_FLAGS = -DWITH_NAS
+ @nas_support_TRUE@NAS_LIBS = -laudio -L/usr/X11R6/lib
+ @pulse_support_TRUE@PULSE_FLAGS = -DWITH_PULSE
+diff --git a/src/c/api/Makefile.am b/src/c/api/Makefile.am
+index d8a1cbd..22861a8 100644
+--- a/src/c/api/Makefile.am
++++ b/src/c/api/Makefile.am
+@@ -2,7 +2,7 @@
+ localedir = $(datadir)/locale
+ inc_local = "-I$(top_srcdir)/intl/"
+ 
+-AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -D_GNU_SOURCE -I/usr/include/ $(inc_local) @glib_include@ -DSPD_SPAWN_CMD=\""@prefix@/bin/speech-dispatcher"\"
++AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -D_GNU_SOURCE $(inc_local) @glib_include@ -DSPD_SPAWN_CMD=\""@prefix@/bin/speech-dispatcher"\"
+ 
+ lib_LTLIBRARIES = libspeechd.la
+ libspeechd_la_SOURCES = libspeechd.c
+diff --git a/src/c/api/Makefile.in b/src/c/api/Makefile.in
+index 538980b..81e1b89 100644
+--- a/src/c/api/Makefile.in
++++ b/src/c/api/Makefile.in
+@@ -247,7 +247,7 @@ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ inc_local = "-I$(top_srcdir)/intl/"
+-AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -D_GNU_SOURCE -I/usr/include/ $(inc_local) @glib_include@ -DSPD_SPAWN_CMD=\""@prefix@/bin/speech-dispatcher"\"
++AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -D_GNU_SOURCE $(inc_local) @glib_include@ -DSPD_SPAWN_CMD=\""@prefix@/bin/speech-dispatcher"\"
+ lib_LTLIBRARIES = libspeechd.la
+ libspeechd_la_SOURCES = libspeechd.c
+ libspeechd_la_HEADERS = libspeechd.h
+diff --git a/src/modules/Makefile.in b/src/modules/Makefile.in
+index 246cee8..8733fe1 100644
+--- a/src/modules/Makefile.in
++++ b/src/modules/Makefile.in
+@@ -301,7 +301,7 @@ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ inc_local = "-I$(top_srcdir)/intl/"
+ EXTRA_DIST = module_main.c module_utils_addvoice.c festival_client.c festival_client.h ivona_client.c dummy.c dummy-message.wav
+-AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DDATADIR=\"$(snddatadir)\" -I/usr/include/ $(inc_local) @glib_include@ -L$(top_builddir)/src/audio -I$(top_srcdir)/src/audio -I../../intl/ $(ibmtts_include) @SNDFILE_CFLAGS@ -D_GNU_SOURCE
++AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DDATADIR=\"$(snddatadir)\" $(inc_local) @glib_include@ -L$(top_builddir)/src/audio -I$(top_srcdir)/src/audio -I../../intl/ $(ibmtts_include) @SNDFILE_CFLAGS@ -D_GNU_SOURCE
+ snddata_DATA = dummy-message.wav
+ sd_flite_SOURCES = flite.c module_utils.c module_utils.h
+ sd_flite_LDFLAGS = @RPATH@ '$(spdlibdir)'

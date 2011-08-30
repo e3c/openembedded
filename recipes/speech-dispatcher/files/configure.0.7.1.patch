@@ -1,0 +1,43 @@
+diff --git a/configure.in b/configure.in
+index 22502e3..bb71bae 100644
+--- a/configure.in
++++ b/configure.in
+@@ -6,6 +6,7 @@ AC_LANG(C)
+ 
+ dnl progs
+ AC_PROG_CC
++AC_PROG_CXX
+ 
+ dnl info
+ AM_INIT_AUTOMAKE([foreign])
+@@ -160,6 +161,7 @@ AC_SUBST(ibmtts_include)
+ # for how the SunStudio CC compiler works.
+ #
+ dnl check for espeak support
++AC_LANG_PUSH([C++])
+ if test "$GCC" = yes; then
+     EXTRA_ESPEAK_LIBS="-lpthread -lm"
+ else
+@@ -173,6 +175,8 @@ espeak_Synth,
+ 		espeak_ok="false"; echo "Espeak not found.",
+ 		$EXTRA_ESPEAK_LIBS)
+ 
++AC_LANG_POP([C++])
++
+ AC_ARG_WITH(espeak, AS_HELP_STRING(--with-espeak, Compile with espeak support),
+ 		 if test $withval = "no"; then 
+ 		    echo "Forced compilation without espeak support."; 
+diff --git a/src/modules/Makefile.am b/src/modules/Makefile.am
+index 1794315..b8e1d2b 100644
+--- a/src/modules/Makefile.am
++++ b/src/modules/Makefile.am
+@@ -6,7 +6,8 @@ SNDFILE_LIBS = @SNDFILE_LIBS@
+
+ EXTRA_DIST = module_main.c module_utils_addvoice.c festival_client.c festival_client.h ivona_client.c dummy.c dummy-message.wav
+
+-AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DDATADIR=\"$(snddatadir)\" -I/usr/include/ $(inc_local) @glib_include@ -L$(top_builddir)/src/audio -I$(top_srcdir)/src/audio -I../../intl/ $(ibmtts_include) @SNDFILE_CFLAGS@ -D_GNU_SOURCE
++AM_CFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DDATADIR=\"$(snddatadir)\" $(inc_local) @glib_include@ -L$(top_builddir)/src/audio -I$(top_srcdir)/src/audio -I../../intl/ $(ibmtts_include) @SNDFILE_CFLAGS@ -D_GNU_SOURCE
++AM_CXXFLAGS = @ERROR_CFLAGS@ -DLOCALEDIR=\"$(localedir)\" -DDATADIR=\"$(snddatadir)\" $(inc_local) @glib_include@ -L$(top_builddir)/src/audio -I$(top_srcdir)/src/audio -I../../intl/ $(ibmtts_include) @SNDFILE_CFLAGS@ -D_GNU_SOURCE
+
+ modulebin_PROGRAMS = sd_dummy sd_generic sd_festival sd_cicero
+
