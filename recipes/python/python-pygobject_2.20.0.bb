@@ -4,13 +4,14 @@ LICENSE = "LGPL"
 DEPENDS = "libffi python-pygobject-native-${PV} glib-2.0"
 PE = "1"
 
-PR = "r3"
+PR = "r4"
 
 MAJ_VER = "${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"
 
 SRC_URI = "\
   ftp://ftp.gnome.org/pub/GNOME/sources/pygobject/${MAJ_VER}/pygobject-${PV}.tar.bz2 \
   file://generate-constants.patch \
+  file://enable-threads.patch \
 "
 S = "${WORKDIR}/pygobject-${PV}"
 
