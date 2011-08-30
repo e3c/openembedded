@@ -5,7 +5,7 @@ LICENSE = "GPLv2"
 DEPENDS = "espeak libdotconf glib-2.0"
 RPROVIDES_${PN} += "speechd"
 
-PR = "r1"
+PR = "r2"
 
 inherit autotools update-rc.d
 
@@ -13,7 +13,8 @@ SRC_URI = "http://www.freebsoft.org/pub/projects/speechd/${PN}-${PV}.tar.gz \
            file://speech-dispatcher.init  \
            file://configure.0.7.1.patch   \
            file://makefile.am.0.7.1.patch \
-           file://speechd.0.7.1.patch "
+           file://speechd.0.7.1.patch \
+           file://correct-espeak-values.patch"
 
 LEAD_SONAME = "libspeechd.so"
 EXTRA_OECONF = " --with-espeak --without-flite --without-ibmtts --without-nas --with-alsa --without-pulse "
