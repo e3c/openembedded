@@ -2,7 +2,7 @@ DESCRIPTION = "Open Source multimedia player."
 SECTION = "multimedia"
 PRIORITY = "optional"
 HOMEPAGE = "http://www.mplayerhq.hu/"
-DEPENDS = "libvpx live555 libdvdread libtheora virtual/libsdl ffmpeg xsp zlib libpng jpeg liba52 freetype fontconfig alsa-lib lzo ncurses lame libxv virtual/libx11 virtual/kernel \
+DEPENDS = "libvpx live555 libtheora ffmpeg xsp zlib libpng jpeg liba52 freetype fontconfig alsa-lib lzo ncurses lame virtual/kernel \
 	   ${@base_conditional('ENTERPRISE_DISTRO', '1', '', 'libmad liba52 lame', d)}"
 
 RDEPENDS_${PN} = "mplayer-common"
@@ -48,7 +48,7 @@ RCONFLICTS_${PN} = "mplayer-atty"
 RREPLACES_${PN} = "mplayer-atty"
 
 PV = "0.0+1.0rc3+svnr${SRCPV}"
-PR = "r28"
+PR = "r29"
 DEFAULT_PREFERENCE = "-1"
 DEFAULT_PREFERENCE_angstrom = "1"
 DEFAULT_PREFERENCE_shr = "1"
@@ -89,7 +89,7 @@ EXTRA_OECONF = " \
 	--disable-smb \
 	--enable-live \
 	--disable-dvdnav \
-	--enable-dvdread \
+	--disable-dvdread \
 	--disable-dvdread-internal \
 	--enable-libdvdcss-internal \
 	--disable-cdparanoia \
@@ -132,7 +132,7 @@ EXTRA_OECONF = " \
 	--disable-gl \
 	--disable-vesa \
 	--disable-svga \
-	--enable-sdl \
+	--disable-sdl \
 	--disable-aa \
 	--disable-caca \
 	--disable-ggi \
@@ -140,14 +140,14 @@ EXTRA_OECONF = " \
 	--disable-directx \
 	--disable-dxr2 \
 	--disable-dxr3 \
-	--enable-dvb \
+	--disable-dvb \
 	--disable-mga \
 	--disable-xmga \
-	--enable-xv \
+	--disable-xv \
 	--disable-xvmc \
 	--disable-vm \
 	--disable-xinerama \
-	--enable-x11 \
+	--disable-x11 \
 	--enable-fbdev \
 	--disable-mlib \
 	--disable-3dfx \
