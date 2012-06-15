@@ -1,0 +1,42 @@
+--- a/CMakeLists.txt	2011-01-06 09:02:19.000000000 -0200
++++ b/CMakeLists.txt	2012-05-29 17:08:13.564269185 -0300
+@@ -277,21 +277,21 @@
+ # ====================================================================
+ set(WITH_PNG ON CACHE BOOL "Include PNG support")
+ set(WITH_JPEG ON CACHE BOOL "Include JPEG support")
+-set(WITH_JASPER ON CACHE BOOL "Include JPEG2K support")
+-set(WITH_TIFF ON CACHE BOOL "Include TIFF support")
+-set(WITH_OPENEXR ON CACHE BOOL "Include ILM support via OpenEXR")
++set(WITH_JASPER OFF CACHE BOOL "Include JPEG2K support")
++set(WITH_TIFF OFF CACHE BOOL "Include TIFF support")
++set(WITH_OPENEXR OFF CACHE BOOL "Include ILM support via OpenEXR")
+ 
+ if(UNIX)
+-    set(WITH_FFMPEG ON CACHE BOOL "Include FFMPEG support")
++    set(WITH_FFMPEG OFF CACHE BOOL "Include FFMPEG support")
+     if(NOT APPLE)
+         set(WITH_UNICAP OFF CACHE BOOL "Include Unicap support (GPL)")
+-        set(WITH_GTK ON CACHE BOOL "Include GTK support")
+-        set(WITH_GSTREAMER ON CACHE BOOL "Include Gstreamer support")
+-        set(WITH_V4L ON CACHE BOOL "Include Video 4 Linux support")
++        set(WITH_GTK OFF CACHE BOOL "Include GTK support")
++        set(WITH_GSTREAMER OFF CACHE BOOL "Include Gstreamer support")
++        set(WITH_V4L OFF CACHE BOOL "Include Video 4 Linux support")
+         set(WITH_XINE OFF CACHE BOOL "Include Xine support (GPL)")
+     endif()
+-    set(WITH_PVAPI ON CACHE BOOL "Include Prosilica GigE support")
+-    set(WITH_1394 ON CACHE BOOL "Include IEEE1394 support")
++    set(WITH_PVAPI OFF CACHE BOOL "Include Prosilica GigE support")
++    set(WITH_1394 OFF CACHE BOOL "Include IEEE1394 support")
+ endif()
+ 
+ if(APPLE)
+@@ -496,7 +496,7 @@
+     include(OpenCVFindOpenEXR.cmake)
+ endif()
+ 
+-set(BUILD_NEW_PYTHON_SUPPORT ON CACHE BOOL "Build with Python support")
++set(BUILD_NEW_PYTHON_SUPPORT OFF CACHE BOOL "Build with Python support")
+ 
+ if(BUILD_NEW_PYTHON_SUPPORT)
+     find_package(PythonInterp)

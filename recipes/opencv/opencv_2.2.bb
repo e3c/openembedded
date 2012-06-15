@@ -6,17 +6,18 @@ LICENSE = "GPLv2"
 
 ARM_INSTRUCTION_SET = "arm"
 
-DEPENDS = "python-numpy ffmpeg gtk+ libtool swig swig-native python jpeg bzip2 zlib libpng tiff glib-2.0"
+DEPENDS = "python jpeg bzip2 zlib libpng"
 
 SRC_URI = "svn://code.ros.org/svn/opencv/branches/2.2;module=opencv;proto=https \
            file://0001-SIFT-unbreak-non-android-ARM-builds.patch;striplevel=2 \
+           file://0002-Remove-dependencies.patch;striplevel=1 \
 "
 
 PARALLEL_MAKE = ""
 
 SRCREV = "4462"
 PV = "2.2.0+svnr${SRCPV}"
-PR = "r3"
+PR = "r5"
 
 S = "${WORKDIR}/opencv"
 
@@ -61,7 +62,7 @@ ALLOW_EMPTY_${PN} = "1"
 INSANE_SKIP_python-opencv = True
 DESCRIPTION_python-opencv = "Python bindings to opencv"
 FILES_python-opencv = "${PYTHON_SITEPACKAGES_DIR}/*"
-RDEPENDS_python-opencv = "python-core python-numpy"
+RDEPENDS_python-opencv = "python-core"
 
 do_install_append() {
 	cp ${S}/include/opencv/*.h ${D}${includedir}/opencv/
