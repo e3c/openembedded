@@ -12,7 +12,7 @@ inherit java-library
 # Some internal version numbers which change from time to time.
 # Allowing to override them makes this include file more
 # versatile.
-VER_CGI 	?= "0.5"
+VER_CGI 	?= "0.6"
 VER_DEBUG 	?= "1.1"
 VER_HEXDUMP	?= "0.2"
 VER_IO 		?= "0.1"

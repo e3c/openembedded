@@ -1,0 +1,16 @@
+diff -ur old/Makefile new/Makefile
+--- old/Makefile    2011-12-02 13:01:27.296768995 -0200
++++ new/Makefile    2011-12-06 11:18:17.792795067 -0200
+@@ -10,9 +10,9 @@
+ CSTD?=-std=c99
+ CSHAREFLAG+=-fpic -fno-stack-protector
+ GCJJNIFLAG=-fjni
+-JVERCFLAGS+=-source 1.5
+-JCFLAGS+=
+-INCLUDES+=-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
++#JVERCFLAGS+=-source 1.5
++#JCFLAGS+=
++#INCLUDES+=-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+ JAVADOCFLAGS?=-quiet -author -link http://java.sun.com/j2se/1.4.2/docs/api/
+ 
+ LDVER?=$(shell ld -v | cut -d' ' -f1)
