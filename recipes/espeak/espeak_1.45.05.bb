@@ -5,7 +5,7 @@ DEPENDS = "portaudio-v19"
 
 S = "${WORKDIR}/espeak-${PV}-source"
 
-PR = "r3"
+PR = "r4"
 
 inherit siteinfo
 
@@ -51,5 +51,5 @@ do_stage() {
 
 FILES_${PN} += "${datadir}/espeak-data"
 
-SRC_URI[md5sum] = "6e810d2786b55cddb34f31b3eb813507"
-SRC_URI[sha256sum] = "816825f8aadb8ce9487808d35f698a9ac39b158cf43ad0aa98e8b4d7c5ab9780"
+SRC_URI[md5sum] = "00692552d54f1849a1a0ad21ae3fc820"
+SRC_URI[sha256sum] = "ce7e7ff85944f83343d11ff0cb6af7fcac1a63d3f3e2271f516544fa297b8f97"
